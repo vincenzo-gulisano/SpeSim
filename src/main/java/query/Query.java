@@ -1,19 +1,15 @@
 package query;
 
+import java.util.Collection;
 import operator.Operator;
-
-import java.util.Iterator;
 
 public interface Query {
 
-    public Query addSource(long perTupleProcessingTime);
+    Query addSource(String id, long cost);
 
-    public Query addOperator(long perTupleProcessingTime, double selectivity);
+    Query addOperator(String id, long cost, double selectivity);
 
-    public Query addSink(long perTupleProcessingTime);
+    Query addSink(String id, long cost);
 
-    public Iterator<Operator> getOperatorIterator();
-
-    public int getNumberOfOperators();
-
+    Collection<Operator> operators();
 }

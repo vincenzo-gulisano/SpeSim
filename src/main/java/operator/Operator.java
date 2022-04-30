@@ -1,9 +1,25 @@
 package operator;
 
-import scheduler.StepResult;
-
 public interface Operator {
 
-    public StepResult process(long ts, long timeLeft);
+    String id();
 
+    long cost();
+
+    double selectivity();
+
+    long process(long t, long remainingTime);
+    Operator upstream();
+
+    void setUpstream(Operator upstream);
+
+    Operator downstream();
+
+    void setDownstream(Operator downstream);
+
+    boolean hasInputSpace();
+
+    void addTuple(long tupleTimestamp);
+
+    boolean canRun(long remainingTime);
 }
